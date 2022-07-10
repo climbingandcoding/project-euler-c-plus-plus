@@ -1,48 +1,67 @@
 #include <iostream>
-#include <math.h>
 
 using namespace std;
 
-
-int main() 
+// Returns whether a number is prime
+bool isPrime(int number)
 {
-
-  int number;
-
-  cout << "Enter a number: ";
-  cin >> number;
-
-  int answer;
-  int sum = 1;
-  int sequence[number + 1];
-  sequence[0] = 1;
-  sequence[1] = 1;
-  int min = floor(sqrt(number));
-
-  for(int i = 2; i <= min; i++)
+  
+	if (number < 2)
   {
-
-    if(sequence[i] == 0)
-    {
-
-      for (int j = i + i; j <= number; j = j + i)
-      {
-
-        if(sequence[j] == 0)
-        {
-          sequence[j] = 1;
-          sum = sum + j;
-        }
-
-          
-      }
-
-      
-    }
- 
+    return false;
   }
 
-  answer = number * (number + 1) / 2 - sum;
-  cout << "The answer is: " << answer << endl;
+	if (number % 2 == 0)
+  {
+    return number == 2;
+  }
+		
+	if (number % 3 == 0)
+  {
+    return number == 3;
+  }
+
+	if (number % 5 == 0)
+  {
+    return number == 5;
+  }
+
+	if (number % 7 == 0)
+  {
+    return number == 7;
+  }
+
+	for (int i = 11; i * i <= number; i++) 
+  {
+    
+		if (number % i == 0)
+    {
+      return false;
+    }
+    
+	}
+
+	return true;
+  
+}
+
+
+int main()
+{
+  
+	long long sum = 0;
+
+  // Loops through all digits and adds the current value to sum if it is prime
+	for (int i = 2; i < 2000000; i++) 
+  {
+    
+		if (isPrime(i))
+    {
+      sum += i;
+    }
+    
+	}
+
+	cout << "The answer is: " << sum << endl;
   
 }
