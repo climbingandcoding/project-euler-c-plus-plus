@@ -57,7 +57,7 @@ int main()
     
     if (isPrime(i))
     {
-      sum += i;
+      sum = sum + i;
     }
     
   }
